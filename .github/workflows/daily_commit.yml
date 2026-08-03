@@ -1,1 +1,28 @@
+name: Daily Date Commit
 
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Update date file
+        run: |
+          date > current_date.txt
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Bot"
+          git add current_date.txt
+          git commit -m "Automated daily date update" || echo "No changes to commit"
+          git push
