@@ -21,8 +21,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action Bot"
+          git config --local user.email "harshsharma2444@gmail.com"
+          git config --local user.name "harshsharma45"
           git add current_date.txt
           git commit -m "Automated daily date update" || echo "No changes to commit"
           git push
